@@ -28,6 +28,9 @@ import org.json.JSONException;
 
 import java.util.List;
 
+import in.ubee.api.Ubee;
+import in.ubee.api.UbeeOptions;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -38,6 +41,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UbeeOptions options = UbeeOptions.getInstance(this);
+        options.setAdsKey("1fb579e7a04475a3a4e818111d06717380befbe55443fa33c73768edcd3c8106","4c6fbf109e9a319544f0ea9a5125167f8555f7246db85b086839fb2bae030632");
+        options.setLogEnabled(true);
+        options.setDevelopmentDevices("<Your_Device_ID>");
+        Ubee.init(this, options);
+
         setContentView(R.layout.activity_maps);
         button = (Button) findViewById(R.id.button1);
         button.setText("Buscar");
