@@ -26,6 +26,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/request_interstitial_button"
+        android:text="Request Interstitial"
+        android:layout_alignParentBottom="true" />
+
+
 
 </RelativeLayout>

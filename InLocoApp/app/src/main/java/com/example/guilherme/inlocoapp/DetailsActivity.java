@@ -6,17 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.guilherme.inlocoapp.model.Weather;
+import com.google.android.gms.ads.InterstitialAd;
 
 import in.ubee.api.Ubee;
 import in.ubee.api.UbeeOptions;
+import in.ubee.api.ads.AdError;
 import in.ubee.api.ads.AdType;
 import in.ubee.api.ads.AdView;
+import in.ubee.api.ads.interstitial.InterstitialAdListener;
 
 /*
 
@@ -41,6 +43,80 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
 
+        View view = findViewById(R.id.request_interstitial_button);
+        //*****************
+        view.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+                //mDescriptionText.setText("Requesting Interstitial...");
+
+                // Initializate the InterstitialAd
+                final in.ubee.api.ads.interstitial.InterstitialAd interstitialAd = new in.ubee.api.ads.interstitial.InterstitialAd(DetailsActivity.this);
+
+                // Register a listener to receive notifications for the InterstitialAd events
+                interstitialAd.setInterstitialAdListener(new InterstitialAdListener() {
+
+                    @Override
+                    public void onAdReady(final in.ubee.api.ads.interstitial.InterstitialAd ad) {
+
+                        /**
+                         * InterstitialAd is ready to be shown
+                         */
+
+                        //mDescriptionText.setText("The InterstitialAd is ready to be shown");
+
+                        // Show the interstitialAd
+                        ad.show();
+                    }
+
+                    @Override
+                    public void onAdError(in.ubee.api.ads.interstitial.InterstitialAd ad, AdError adError) {
+
+                        /**
+                         * InterstitialAd is presented on the screen
+                         */
+
+                        //mDescriptionText.setText("AdError: " + adError);
+                    }
+
+                    @Override
+                    public void onAdOpened(in.ubee.api.ads.interstitial.InterstitialAd ad) {
+
+                        /**
+                         * InterstitialAd is presented on the screen
+                         */
+
+                        //mDescriptionText.setText("The InterstitialAd was opened");
+                    }
+
+                    @Override
+                    public void onAdClosed(in.ubee.api.ads.interstitial.InterstitialAd ad) {
+
+                        /**
+                         * InterstitialAd is closed
+                         */
+
+                        //mDescriptionText.setText("The InterstitialAd was closed");
+                    }
+
+                    @Override
+                    public void onAdLeftApplication(in.ubee.api.ads.interstitial.InterstitialAd ad) {
+
+                        /**
+                         * The user interacted with the InterstitialAd and is leaving the application
+                         */
+                    }
+
+                });
+
+                // Loads the InterstitialAd
+                interstitialAd.loadAd();
+            }
+        });
+
+
+        //*****************
         LinearLayout frameLayout = (LinearLayout) findViewById(R.id.linearLayout);
         TextView textView = (TextView) findViewById(R.id.textView);
 
